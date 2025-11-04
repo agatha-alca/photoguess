@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Usuário | Photoguess</title>
+    <link rel="stylesheet" href="perfil.css">
+</head>
+<body>
+    <header class="navbar">
+        <nav>
+            <a href="index.html">Início</a>
+            <a href="login.html">Login</a>
+            <a href="cadastro.html">Cadastro</a>
+            <a href="#" onclick="sair()">Sair</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="perfil-container">
+            <span class="icone-perfil">👤</span> 
+            
+            <h1>Perfil do Usuário</h1>
+
+            <div class="dados">
+                <p><strong>Usuário:</strong> <span id="perfilNome">Carregando...</span></p>
+                <p><strong>Email:</strong> <span id="perfilEmail">Carregando...</span></p>
+                </div>
+            
+            <button class="btn-logout" onclick="sair()">Sair da Conta (Botão Opcional)</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>🅾︎ Photoguess, Se divirta no mundo das Fotos antigas!</p>
+    </footer>
+
+    <script>
+        // === FUNÇÕES DE LOCAL STORAGE / BANCO DE DADOS ===
+        
+        /**
+         * Simula a busca de um usuário no "banco de dados" (localStorage) pelo email.
+         * @param {string} email - O email do usuário logado.
+         * @returns {Object|null} Objeto do usuário (se encontrado) ou null.
+         */
+        function buscarDadosUsuario(email) {
+            const emailsSalvos = JSON.parse(localStorage.getItem("emails")) || [];
+            const usuarioEncontrado = emailsSalvos.find(u => u.email === email);
+            return usuarioEncontrado;
+        }
+
+        /**
+         * Carrega os dados do usuário logado e exibe na tela.
+         */
+        function carregarPerfil() {
+            const emailLogado = localStorage.getItem("emailLogado");
+
+            if (!emailLogado) {
+                alert("Você precisa estar logado para acessar esta página.");
+                window.location.href = "login.html"; // Redireciona para o login
+                return;
+            }
+
+            const dadosUsuario = buscarDadosUsuario(emailLogado);
+            const spanNome = document.getElementById("perfilNome");
+            const spanEmail = document.getElementById("perfilEmail");
+            
+            if (dadosUsuario) {
+                spanNome.textContent = dadosUsuario.email.split('@')[0]; // Exibe o que vem antes do @
+                spanEmail.textContent = dadosUsuario.email;
+            } else {
+                spanNome.textContent = "Erro ao carregar";
+                spanEmail.textContent = emailLogado;
+            }
+        }
+        
+        /**
+         * Função para sair da conta (Mantida)
+         */
+        function sair() {
+            localStorage.removeItem("emailLogado");
+            alert("Você saiu da conta.");
+            window.location.href = "login.html"; // Redireciona
+        }
+        
+        // Carrega o perfil ao abrir a página
+        window.onload = carregarPerfil;
+
+    </script>
+</body>
+</html>

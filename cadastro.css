@@ -1,0 +1,153 @@
+/* GERAL E BODY */
+/* --- */
+
+* {
+    /* Reseta o preenchimento (padding) e a margem (margin) padrão */
+    margin: 0;
+    padding: 0;
+    /* Usa a caixa de modelo de borda para que o padding e a borda não aumentem o tamanho total do elemento */
+    box-sizing: border-box;
+    /* Define uma fonte amigável */
+    font-family: Arial, sans-serif;
+}
+
+body {
+    /* Cor de fundo com o gradiente solicitado */
+    background: linear-gradient(#acc3c5, #7b9e99);
+    /* Garante que o body ocupe toda a altura da viewport */
+    min-height: 100vh;
+    /* Centraliza o conteúdo (main e footer) */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* Cor de texto padrão */
+    color: #333;
+}
+
+/* MAIN E FORMULÁRIO */
+/* --- */
+
+main {
+    /* Centraliza o formulário verticalmente no espaço restante */
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#Cadastro\ Usuário { /* Usa a sintaxe de escape para o espaço no ID */
+    /* Define a largura máxima do formulário */
+    max-width: 400px;
+    width: 90%;
+    /* Adiciona um efeito de sombra */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Adiciona bordas arredondadas */
+    border-radius: 10px;
+    /* Adiciona um preenchimento interno */
+    padding: 20px;
+    /* Fundo branco ou claro para destacar */
+    background-color: #fff;
+}
+
+/* FIELDSET E DIV CADASTRO */
+/* --- */
+
+fieldset {
+    /* Remove a borda padrão do fieldset */
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.Cadastro {
+    text-align: center;
+}
+
+legend {
+    /* Estilo para o título do formulário */
+    font-size: 2em;
+    font-weight: bold;
+    color: #3f5f5c; /* Uma cor relacionada ao gradiente */
+    margin-bottom: 20px;
+    padding: 0 10px;
+    text-transform: uppercase;
+}
+
+/* LABELS E INPUTS */
+/* --- */
+
+p {
+    /* Margem para separar os campos */
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+label {
+    /* Estilo para os rótulos */
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+    font-size: 0.9em;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    /* Estilo geral para os campos de entrada */
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    /* Efeito de foco sutil */
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #7b9e99;
+    outline: none; /* Remove o contorno padrão do navegador */
+}
+
+/* BOTÃO CADASTRAR */
+/* --- */
+
+button {
+    /* Estilo para o botão */
+    width: 100%;
+    padding: 12px;
+    background-color: #7b9e99; /* Cor principal do gradiente */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: 10px;
+    /* Transição para o efeito hover */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #5d7c78; /* Cor um pouco mais escura no hover */
+    transform: translateY(-2px); /* Efeito de elevação sutil */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* FOOTER */
+/* --- */
+
+footer {
+    /* Estilo para o rodapé */
+    margin-top: 20px;
+    padding: 10px 0;
+    font-size: 0.85em;
+    color: #555;
+    text-align: center;
+    width: 100%;
+}

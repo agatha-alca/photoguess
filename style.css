@@ -1,0 +1,206 @@
+body {
+    background: #34887a;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: impact;
+    font-size: 50px;
+}
+
+.home {
+    text-align: center;
+    padding: 10px;
+}
+
+.home button {
+    background-color: rgb(185, 181, 176);
+    font-size: medium;
+    padding: 6px;
+    border-radius: 5px;
+}
+
+.home a {
+    text-decoration: none;
+    color: black;
+    font-weight: 660;
+
+}
+
+.navegacao {
+    top: 0;
+    width: 100%; /* Ocupa toda a largura da tela */ 
+    background: rgb(0, 0, 0); /* Fundo laranja */ 
+    display: flex; /* Usa Flexbox para alinhar os itens */ 
+    justify-content: center;
+}
+
+.navegacao ul {
+    display: flex; /* Deixa os itens lado a lado */ 
+    flex-wrap: wrap; /* Permite que quebrem linha em telas pequenas */ 
+    justify-content: center; /* Centraliza os itens */ 
+}
+
+.navegacao li {
+    list-style-type: none; /* Remove os marcadores da lista (bolinhas) */ 
+    margin: 8px; /* Espaçamento entre os itens */ 
+}
+
+.navegacao a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px; /* Espaçamento interno (clique maior) */
+}
+
+section {
+    padding: 0;
+    margin: 0;
+}
+
+.rodada-container {
+    margin-bottom: 5px;
+}
+
+#rodada {
+    font-weight: bold;
+    font-size: larger;
+    text-align: center;
+}
+
+.img-container {
+    width: 570px;
+    height: 490px;
+    position: relative;
+    display: flex;
+    justify-content: center; /* Centraliza HORIZONTALMENTE */
+    align-items: center;    /* Centraliza VERTICALMENTE */
+    margin: 0 auto;         /* Centraliza o bloco na página */
+    margin-bottom: 10px;
+    overflow: auto;
+}
+
+
+.img-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Mantém proporção da imagem */
+    display: block;
+    border: 3px solid black;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    box-sizing: border-box;
+}
+
+#valor {
+    font-weight: bolder;
+    font-size: 30px;
+}
+
+.valor-container {
+    padding: 10px;
+}
+
+.slider-container{
+    width: 100%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(0, 0, 0);
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 5px;
+    background-color: rgb(185, 181, 176);
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.slider{
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    height: 12px;
+    background: #ffffff;
+    opacity: 0.9;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 24px;
+  background: #000000;
+  cursor: pointer;
+}
+
+.datas {
+  display: flex;
+  justify-content: space-between; /* 🔥 uma no início, outra no fim */
+  font-weight: bold;
+  width: 100%;
+  margin-top: 5px;
+  padding: 0 5px; /* pequeno respiro, evita que toquem nas bordas */
+  box-sizing: border-box; 
+}
+
+.resultado-container { 
+    background-color: #000000;
+    color:white;
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 10px;
+    font-size: large;
+}
+
+.game-submit-container{
+    text-align: center;
+    padding: 20px;
+
+}
+
+.game-submit {
+    font-size: larger;
+    font-weight: 560;
+    padding: 6px;
+    background-color: rgb(185, 181, 176);
+    border-radius: 5px;
+}
+
+.resultados-finais-container {
+    background-color: #000000;
+    color:white;
+    display: flex;
+    justify-content:center;
+    margin-top: 60px;
+}
+.resultados-finais-container h2 {
+    font-size: 30px;
+}
+
+#pontuacao-final-valor {
+    font-weight: 660;
+    font-size: 20px;
+}
+
+#pontuacao-maxima {
+    font-weight: 660;
+    font-size: 20px;
+}
+
+.rodape {
+    margin-top: 50px;
+}
+
+footer a {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}

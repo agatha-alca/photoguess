@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photoguess</title>
+       <link rel="stylesheet" href="cadastro.css">
+</head>
+<body>
+    
+</body>
+</html>
+
+
+
+
+
+<main>
+    <form id="Cadastro Usuário" action="login.html" method="post">
+        <fieldset>
+                <div class="Cadastro">
+            <legend>Cadastro</legend>
+            <p><label>Usuário:</label></p>
+            <input placeholder="Usuário" type="text" name="nome" id="nome" required>
+            <p><label>Email:</label></p>
+            <input placeholder="Digite seu Email" type="email" name="email" id="email" required>
+            <p><label>Senha:</label></p>
+            <input placeholder="Digite Sua Senha" type="password" number="senha" id="senha" required>
+            <p><label>Confirme Sua Senha:</label></p>
+            <input placeholder="Digite sua senha" type="password" number="senha" id="senha" required>
+           <p><button onclick="funçãoQueSeráExecutada ()">Cadastrar</button></p>
+           <div id="google-login-button" class="google-login-separator">
+    <p style="text-align: center; margin: 15px 0; font-weight: bold; color: #555;">OU ENTRE COM</p>
+    <div id="g_id_onload"
+        data-client_id="SEU_CLIENT_ID_AQUI" 
+        data-context="signin"
+        data-ux_mode="popup"
+        data-callback="handleGoogleLogin" 
+        data-auto_prompt="false">
+    </div>
+    <div class="g_id_signin"
+        data-type="standard"
+        data-shape="rectangular"
+        data-theme="outline"
+        data-text="signin_with"
+        data-size="large"
+        data-locale="pt-BR"
+        data-logo_alignment="left">
+    </div>
+</div>
+            </div>
+        </fieldset>
+    </form>
+</main>
+<footer>
+    <p>🅾︎ Photoguess, Se divirta no mundo das Fotos antigas!</p>
+    </footer>
+    
+    <script>
+        // == Atualiza interface do site principal ==
+        window.onload = function () {
+            if (document.title.includes("Photoguess")){
+                atualizarInterface ();
+            }
+        };
+        
+        function atualizarInterface (){
+            const email = localStorage.getItem ("emailLogado");
+            const nomeSpan = localStorage.getElementeById("usuarioNome");
+            const btnlogin = localStorage.getElementeById("btnLogin");
+            const btnSair = localStorage.getElementeById("btnSair");
+
+             if (email) {
+    nomeSpan.textContent = `Olá, ${email}!`;
+    btnLogin.style.display = "none";
+    btnSair.style.display = "inline-block";
+  } else {
+    nomeSpan.textContent = "";
+    btnLogin.style.display = "inline-block";
+    btnSair.style.display = "none";
+  }
+}
+
+// === Fazer Login ===
+
+function fazerCadastro () {
+    const email = localStorage.getElementeById("email").value.trim ();
+    const senha = localStorage.getElementeById("senha").value.trim ();
+    if (!email || !senha) {
+        alert ("Por favor, Preencha todos os campos!");
+        return;
+    }
+     // pega os usuarios ja cadastrados ou cria um array vazio
+
+     const emailsSalvos = JSON.parse(localStorage.getItem("emails")) || [];
+     
+     // verifica se o usuario ja existe 
+
+     const emailExiste = emailsSalvos.some(u => u.nome === email);
+
+     if (emailExiste){
+        alert ("Esse email ja existe! Tente outro email.");
+        return;
+     }
+
+     // adiciona novo usuário no array
+     
+     emailsSalvos.push({email: email, senha: senha});
+
+     // Salva no LocalStorage
+
+     localStorage.setItem("emails", JSON.stringify(emailsSalvos));
+
+     // Salva o email logado
+
+     localStorage.setItem("emailLogado", email);
+
+     alert ("Cadastro feito com sucesso!");
+
+     // corrigi o nome do arquivo para redirecionar
+
+     window.location.href = "login.html";
+    }
+
+    // ==== Cadastro ====
+
+    function cadastrar () {
+
+        const novoEmail = localStorage.getElementeById("novoEmail").value;
+        const novaSenha = localStorage.getElementeById("novaSenha").value;
+
+        if (novoEmail && novaSenha) {
+
+            const emailsSalvos = JSON.parse(localStorage.getItem("emails")) || [];
+
+            const jaExiste = emailsSalvos.some((u) => u.nome === novoEmail);
+            if (jaExiste) {
+                alert ("Esse email ja existe! Crie outro email.");
+                    return;
+            }
+
+            emailsSalvos.push({email: novoEmail, senha: novaSenha});
+            localStorage.setItem("emails", JSON.stringify(emailsSalvos));
+
+            alert ("Cadastro feito com sucesso!");
+            window.location.href = "login.html";
+        } else { 
+            alert ("Preencha todos os campos");
+        }
+    }
+    // Função para manipular a resposta do Google (ID Token) no cadastro
+    function handleGoogleCadastrar(response) {
+        // ... (Sua lógica de decodificação e registro/login) ...
+        const jwtToken = response.credential;
+        // Simulação de decodificação do JWT
+        const base64Url = jwtToken.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+
+        const payload = JSON.parse(jsonPayload);
+        const email = payload.email; 
+
+        if (email) {
+            // Lógica para salvar no "banco de dados" (localStorage)
+            let emailsSalvos = JSON.parse(localStorage.getItem("emails")) || [];
+            const jaExiste = emailsSalvos.some(u => u.email === email);
+            
+            if (!jaExiste) {
+                emailsSalvos.push({email: email, senha: "GOOGLE_AUTH"});
+                localStorage.setItem("emails", JSON.stringify(emailsSalvos));
+            }
+
+            // Loga o usuário e redireciona
+            localStorage.setItem("emailLogado", email);
+            alert("Cadastro/Login com Google feito com sucesso, " + email + "!");
+            window.location.href = "perfil.html"; // Redireciona para o perfil
+        } else {
+            alert("Erro ao obter dados do Google.");
+        }
+    }
+
+    // Navegações entre páginas
+    
+    function irParaLogin (){
+        window.location.href = "login.html";
+    }
+
+    function irParaCadastro () {
+        window.location.href = "cadastro.html";
+    }
+
+    function irParaHome () {
+        window.location.href = "index.html"
+    }
+    
+        </script>
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
+    </body>
+    </html>
+
+
+                
+
+
+
+
+
+    
+
+

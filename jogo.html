@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Photoguess</title>
+</head>
+<body onload="novaRodada()">
+    <!--Barra de navegação-->
+    <nav class="navegacao">
+        <ul>
+            <li class=""><a href="index.html">PHOTOGUESS</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Cadastro</a></li>
+            <li><a href="perfil.html">Perfil</a></li>
+        </ul>
+    </nav>
+
+    <!--Seção principal do jogo-->
+    <section>
+        <div class="rodada-container">
+            <div id="rodada">
+                <!--Exibir com JS-->
+            </div>
+        </div>
+        <div class="img-container">
+            <div id="img">
+                <!--Exibir com JS-->
+            </div>
+        </div>
+
+        <!--Slider de data-->
+        <div class="slider-container">
+            <div class="valor-container">
+                <span id="valor"></span>
+            </div>
+            <input type="range" min="1900" max="2024" value="1962" class="slider" id="slider">
+            <div class="datas">
+                <div class="data1">1900</div>
+                <div class="data2">2024</div>
+            </div>
+        </div>
+
+        <!--<button id="sorteio">sorteio</button>
+        <button id="reset">reset</button>-->
+
+        <div class="resultado-container">
+            <div id="img-data">
+                <!--Exibir com JS-->
+            </div>
+
+            <div id="pontuacao">
+                <!--Exibir com JS-->
+            </div>
+        </div>
+
+        <div class="game-submit-container">
+            <button class="game-submit" id="game-submit">Confirmar</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="rodape">
+            <p><small>Feito por <a href="#">Agatha</a> e <a href="#">Rafael</a>.</small></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

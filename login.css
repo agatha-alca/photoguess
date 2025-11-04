@@ -1,0 +1,116 @@
+/* GERAL E BODY */
+/* --- */
+
+* {
+    /* Reset básico */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    /* Fundo com o gradiente solicitado para a marca */
+    background: linear-gradient(#acc3c5, #7b9e99);
+    /* Ocupa 100% da altura da viewport */
+    min-height: 100vh;
+    /* Centraliza o conteúdo (main e footer) usando Flexbox */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+}
+
+/* MAIN E FORMULÁRIO DE LOGIN */
+/* --- */
+
+main {
+    /* Permite que o main ocupe o espaço restante para centralizar o formulário */
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.Login {
+    /* Estilo da caixa de login */
+    background: white;
+    width: 90%;
+    max-width: 400px;
+    padding: 35px;
+    border-radius: 12px;
+    /* Sombra mais pronunciada para dar profundidade */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+/* TÍTULOS E TEXTOS */
+/* --- */
+
+h1 {
+    /* Título principal (Photoguess) */
+    color: #5d7c78; /* Tom do gradiente */
+    font-size: 2.2em;
+    margin-bottom: 5px;
+}
+
+h2 {
+    /* Subtítulo (Login de usuário) */
+    color: #7b9e99;
+    font-size: 1.3em;
+    margin-bottom: 25px;
+    font-weight: 400;
+}
+
+/* CAMPOS DE ENTRADA (DIV .caixa) */
+/* --- */
+
+.caixa {
+    text-align: left;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+    font-size: 0.95em;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+    /* Transição para o efeito de foco */
+    transition: all 0.3s ease;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #7b9e99;
+    box-shadow: 0 0 5px rgba(123, 158, 153, 0.5); /* Sombra suave ao focar */
+    outline: none;
+}
+
+/* BOTÃO DE LOGIN */
+/* --- */
+
+p button {
+    width: 100%;
+    padding: 12px;
+    background-color: #7b9e99; /* Cor principal do gradiente */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}

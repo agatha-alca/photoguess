@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    
+    <title>Photoguess</title>
+</head>
+<body onload="exibirResultadoFinal()">
+    <!--Barra de navegação-->
+    <nav class="navegacao">
+        <ul>
+            <li class=""><a href="index.html">PHOTOGUESS</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Cadastro</a></li>
+            <li><a href="perfil.html">Perfil</a></li>
+        </ul>
+    </nav>
+
+    <div class="resultados-finais-container">
+        <div id="pontuacao-final">
+            <!--Exibir com JS-->
+        </div>
+    </div>
+
+    <footer>
+        <div class="rodape">
+            <p><small>Feito por <a href="#">Agatha</a> e <a href="#">Rafael</a>.</small></p>
+        </div>
+    </footer>
+
+    <script>
+        function exibirResultadoFinal() {
+        // recupera a pontuação salva no navegador
+        const pontuacaoTotal = parseInt(localStorage.getItem("pontuacaoTotal")) || 0;
+
+        let mensagem;
+        if (pontuacaoTotal === 5000) { 
+            mensagem = "<h2>Perfeito!</h2>";
+        } else if (pontuacaoTotal <= 800) {
+            mensagem = "<h2>Tente novamente...</h2>";
+        } else {
+            mensagem = "<h2>Parabéns!</h2>";
+        }
+
+        const pontuacaoFinal = document.getElementById("pontuacao-final");
+        pontuacaoFinal.innerHTML = `${mensagem}
+            <p>Sua pontuação final é <span id="pontuacao-final-valor">${pontuacaoTotal}</span>!</p>
+            <p>O máximo é de <span id="pontuacao-maxima">5000</span>.</p>
+        `;
+        }
+    </script>
+</body>
+</html>
