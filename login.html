@@ -23,7 +23,8 @@
                     <input placeholder="Digite seu email de login" type="email" name="email" id="email" required>
                 <p><label>Senha</label> </p> 
                 <input placeholder="Digite sua senha " type="password" name="senha" id="senha" required> <br>
-               <p> <button onclick="funçãoQueSeráExecutada ()">Login</button> </p>
+             <p><button type="button" onclick="fazerLogin()">Login</button></p>
+
                <center><h4>Não possui um login?<a href="cadastro.html"> Cadastrar-se</a></h4></center>
                <div id="google-login-button" class="google-login-separator">
     <p style="text-align: center; margin: 15px 0; font-weight: bold; color: #555;">OU ENTRE COM</p>
@@ -92,7 +93,7 @@
                 alert("Login foi feito com sucesso!");
                 window.location.href = "index.html";
             } else {
-                alert(Preencha email e senha!);
+                alert("Preencha email e senha!");
             }
         }
 
@@ -154,23 +155,23 @@
   }
   // ======= LOGIN =======
 function fazerLogin() {
-  const email = document.getElementById("email").value;
-  const senha = document.getElementById("senha").value;
-  const usuariosSalvos = JSON.parse(localStorage.getItem("usuarios")) || [];
+      const email = document.getElementById("email").value.trim();
+      const senha = document.getElementById("senha").value.trim();
 
-  const encontrado = usuariosSalvos.find(
-    (u) => u.nome === email && u.senha === senha
-  );
+      // Recupera os usuários salvos no localStorage
+      const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-  if (encontrado) {
-    localStorage.setItem("usuarioLogado", email);
-    alert("Login feito com sucesso!");
-    window.location.href = "index.html";
-  } else {
-    alert("Email ou senha incorretos!");
-  }
-}
+      // Procura um usuário com mesmo email e senha
+      const encontrado = usuarios.find(u => u.email === email && u.senha === senha);
 
+      if (encontrado) {
+        localStorage.setItem("usuarioLogado", email);
+        alert("Login feito com sucesso!");
+        window.location.href = "index.html"; // redireciona para a home
+      } else {
+        alert("Email ou senha incorretos!");
+      }
+    }
 // ====== Cadastro ======
 
         function cadastrar () {
@@ -244,7 +245,7 @@ function fazerLogin() {
             function irParaCadastro () {
                 window.location.href = "cadastro.html";
             }
-            function irParaHome () {
+            function fazerLogin () {
                 window.location.href = "index.html";
             }
 
@@ -265,7 +266,6 @@ function fazerLogin() {
 
 
         
-
 
 
 
