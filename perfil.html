@@ -12,7 +12,7 @@
             <a href="index.html">Início</a>
             <a href="login.html">Login</a>
             <a href="cadastro.html">Cadastro</a>
-            <a href="#" onclick="sair()">Sair</a>
+            <a href="login.html" onclick="sair()">Sair</a>
         </nav>
     </header>
 
@@ -44,7 +44,7 @@
          * @returns {Object|null} Objeto do usuário (se encontrado) ou null.
          */
         function buscarDadosUsuario(email) {
-            const emailsSalvos = JSON.parse(localStorage.getItem("emails")) || [];
+            const emailsSalvos = JSON.parse(localStorage.getItem("usuarios")) || [];
             const usuarioEncontrado = emailsSalvos.find(u => u.email === email);
             return usuarioEncontrado;
         }
@@ -53,7 +53,7 @@
          * Carrega os dados do usuário logado e exibe na tela.
          */
         function carregarPerfil() {
-            const emailLogado = localStorage.getItem("emailLogado");
+            const emailLogado = localStorage.getItem("usuarioLogado");
 
             if (!emailLogado) {
                 alert("Você precisa estar logado para acessar esta página.");
@@ -78,13 +78,14 @@
          * Função para sair da conta (Mantida)
          */
         function sair() {
-            localStorage.removeItem("emailLogado");
+            localStorage.removeItem("usuarioLogado");
             alert("Você saiu da conta.");
             window.location.href = "login.html"; // Redireciona
         }
         
         // Carrega o perfil ao abrir a página
         window.onload = carregarPerfil;
+        
 
     </script>
 </body>
