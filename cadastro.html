@@ -28,7 +28,7 @@
             <input placeholder="Digite Sua Senha" type="password" number="senha" id="senha" required>
             <p><label>Confirme Sua Senha:</label></p>
             <input placeholder="Digite sua senha" type="password" number="senha" id="senha" required>
-           <p><button onclick="funçãoQueSeráExecutada ()">Cadastrar</button></p>
+         <p> <button type="button" onclick="fazerCadastro()">Cadastrar</button></p>
            <div id="google-login-button" class="google-login-separator">
     <p style="text-align: center; margin: 15px 0; font-weight: bold; color: #555;">OU ENTRE COM</p>
     <div id="g_id_onload"
@@ -66,9 +66,9 @@
         
         function atualizarInterface (){
             const email = localStorage.getItem ("emailLogado");
-            const nomeSpan = localStorage.getElementeById("usuarioNome");
-            const btnlogin = localStorage.getElementeById("btnLogin");
-            const btnSair = localStorage.getElementeById("btnSair");
+            const nomeSpan = document.getElementeById("usuarioNome");
+            const btnlogin = document.getElementeById("btnLogin");
+            const btnSair = document.getElementeById("btnSair");
 
              if (email) {
     nomeSpan.textContent = `Olá, ${email}!`;
@@ -83,70 +83,52 @@
 
 // === Fazer Login ===
 
-function fazerCadastro () {
-    const email = localStorage.getElementeById("email").value.trim ();
-    const senha = localStorage.getElementeById("senha").value.trim ();
-    if (!email || !senha) {
-        alert ("Por favor, Preencha todos os campos!");
+function fazerCadastro() {
+      const email = document.getElementById("email").value.trim();
+      const senha = document.getElementById("senha").value.trim();
+      if (!email || !senha) {
+        alert("Preencha todos os campos!");
         return;
-    }
-     // pega os usuarios ja cadastrados ou cria um array vazio
+      }
 
-     const emailsSalvos = JSON.parse(localStorage.getItem("emails")) || [];
-     
-     // verifica se o usuario ja existe 
-
-     const emailExiste = emailsSalvos.some(u => u.nome === email);
-
-     if (emailExiste){
-        alert ("Esse email ja existe! Tente outro email.");
+      const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+      const existe = usuarios.some(u => u.email === email);
+      if (existe) {
+        alert("Este email já está cadastrado!");
         return;
-     }
+      }
 
-     // adiciona novo usuário no array
-     
-     emailsSalvos.push({email: email, senha: senha});
+      usuarios.push({ email, senha });
+      localStorage.setItem("usuarios", JSON.stringify(usuarios));
+      localStorage.setItem("usuarioLogado", email);
 
-     // Salva no LocalStorage
-
-     localStorage.setItem("emails", JSON.stringify(emailsSalvos));
-
-     // Salva o email logado
-
-     localStorage.setItem("emailLogado", email);
-
-     alert ("Cadastro feito com sucesso!");
-
-     // corrigi o nome do arquivo para redirecionar
-
-     window.location.href = "login.html";
+      alert("Cadastro feito com sucesso!");
+      window.location.href = "login.html";
     }
 
     // ==== Cadastro ====
 
-    function cadastrar () {
+    function fazerCadastro() {
+      const email = document.getElementById("email").value.trim();
+      const senha = document.getElementById("senha").value.trim();
+      if (!email || !senha) {
+        alert("Preencha todos os campos!");
+        return;
+      }
 
-        const novoEmail = localStorage.getElementeById("novoEmail").value;
-        const novaSenha = localStorage.getElementeById("novaSenha").value;
+      const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+      const existe = usuarios.some(u => u.email === email);
+      if (existe) {
+        alert("Este email já está cadastrado!");
+        return;
+      }
 
-        if (novoEmail && novaSenha) {
+      usuarios.push({ email, senha });
+      localStorage.setItem("usuarios", JSON.stringify(usuarios));
+      localStorage.setItem("usuarioLogado", email);
 
-            const emailsSalvos = JSON.parse(localStorage.getItem("emails")) || [];
-
-            const jaExiste = emailsSalvos.some((u) => u.nome === novoEmail);
-            if (jaExiste) {
-                alert ("Esse email ja existe! Crie outro email.");
-                    return;
-            }
-
-            emailsSalvos.push({email: novoEmail, senha: novaSenha});
-            localStorage.setItem("emails", JSON.stringify(emailsSalvos));
-
-            alert ("Cadastro feito com sucesso!");
-            window.location.href = "login.html";
-        } else { 
-            alert ("Preencha todos os campos");
-        }
+      alert("Cadastro feito com sucesso!");
+      window.location.href = "login.html";
     }
     // Função para manipular a resposta do Google (ID Token) no cadastro
     function handleGoogleCadastrar(response) {
@@ -208,5 +190,4 @@ function fazerCadastro () {
 
 
     
-
 
